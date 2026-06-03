@@ -17,8 +17,6 @@ public enum PictureType: String {
 
 //MARK: Update UI
 struct CreateImageHomeView: View {
-    
-
     @State private var path = NavigationPath()
     
     var body: some View {

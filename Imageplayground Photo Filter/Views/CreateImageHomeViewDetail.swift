@@ -11,11 +11,11 @@ struct CreateImageHomeViewDetail: View {
     var imageSelectionType: PictureType
     @State private var selectedItem: PhotosPickerItem?
     @State private var selectedImage: Image?
+    @State private var selectedUIImage: UIImage?
     @State private var showPicker = false
     @State private var isWebImagVisable: Bool = false
-    //@State private var processedImage: Image?
     @State private var showCamera = false
-    @State private var capturedUIImage: UIImage? // optional if you want raw UIImage
+    @State private var capturedUIImage: UIImage? // Camera UIKit Requirement
     
     var body: some View {
         VStack {
@@ -29,19 +29,34 @@ struct CreateImageHomeViewDetail: View {
             }
             // The PhotosPicker component
             PhotosPicker(selection: $selectedItem, matching: .images) {
-                Label("Select Photo", systemImage: "photo.on.rectangle")
+                Label("Select New Photo", systemImage: "photo.on.rectangle")
             }
             .buttonStyle(.borderedProminent)
             Button("AI Sketch") {
                 let _ = print("SKETCH")
             }
             .buttonStyle(.borderedProminent)
+            Button("SAVE") {
+                let _ = print("SAVE")
+                if let uiImage = selectedUIImage {
+                    ImageFileManager.shared.saveImage(uiImage: uiImage, name: "Test1")
+                }
+            }
+            .buttonStyle(.bordered)
+            Button("TempLoad") {
+                let _ = print("LOAD")
+                if let uiImg = ImageFileManager.shared.loadImage(name: "Test1") {
+                    selectedImage = Image(uiImage: uiImg)
+                }
+            }
+            .buttonStyle(.bordered)
         }
         .onChange(of: selectedItem) {
             Task {
                 if let data = try? await selectedItem?.loadTransferable(type: Data.self),
                    let uiImage = UIImage(data: data) {
                     selectedImage = Image(uiImage: uiImage)
+                    selectedUIImage = uiImage
                 }
             }
         }
@@ -63,6 +78,7 @@ struct CreateImageHomeViewDetail: View {
         .onChange(of: capturedUIImage) {
             if let uiImage = capturedUIImage {
                 selectedImage = Image(uiImage: uiImage)
+                selectedUIImage = uiImage
             }
         }
     }
@@ -71,3 +87,4 @@ struct CreateImageHomeViewDetail: View {
 #Preview {
     CreateImageHomeViewDetail(imageSelectionType: PictureType.webImage) //PictureType.galleryImage
 }
+
