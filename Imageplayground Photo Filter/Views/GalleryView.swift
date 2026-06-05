@@ -27,9 +27,11 @@ struct GalleryView: View {
             // 3. Implement the lazy vertical grid
             LazyVGrid(columns: columns, spacing: 16) {
                 ForEach(items, id: \.self) { item in
-                    Text("Item \(item)")
+                    //Text("Item \(item)")
+                    AsyncImage(url: URL(string: "https://hips.hearstapps.com/hmg-prod/images/2026-ferrari-f80-176-686e843d2569f.jpg?crop=0.636xw:0.536xh;0.165xw,0.325xh&resize=700:*"))
                         .frame(maxWidth: .infinity)
                         .frame(height: 100)
+                        .frame(width: 100)
                         .background(Color.blue)
                         .foregroundColor(.white)
                         .cornerRadius(8)
