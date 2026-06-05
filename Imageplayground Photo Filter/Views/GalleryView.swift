@@ -7,6 +7,8 @@
 
 //MARK: Grid view with all the saved images
 
+//View model load all images
+
 import SwiftUI
 
 struct GalleryView: View {
@@ -36,4 +38,8 @@ struct GalleryView: View {
             .padding()
         }
     }
+}
+
+#Preview {
+    GalleryView()
 }
