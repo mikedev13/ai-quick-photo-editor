@@ -9,8 +9,7 @@
 import SwiftUI
 
 struct GalleryView: View {
-    
-    @StateObject var viewModel: GalleryViewModel
+    @State var viewModel: GalleryViewModel
     
     // 1. Define sample data
     let items = Array(1...21)
