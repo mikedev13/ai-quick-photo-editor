@@ -20,7 +20,7 @@ struct ContentView: View {
                     Label("Create", systemImage: "person.fill")  //New View
                 }
             // Tab 3
-            GalleryView()
+            GalleryView(viewModel: GalleryViewModel(model: SavedGalleryModel(title: "Mike Data", isCompleted: true, defaultImageString: "https://hips.hearstapps.com/hmg-prod/images/2026-ferrari-f80-176-686e843d2569f.jpg?crop=0.636xw:0.536xh;0.165xw,0.325xh&resize=700:*")))
                 .tabItem {
                     Label("Gallery", systemImage: "photo.on.rectangle")
                         .symbolEffect(.pulse.byLayer, options: .repeating)

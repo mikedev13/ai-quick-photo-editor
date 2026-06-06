@@ -6,18 +6,17 @@
 //
 
 //MARK: Grid view with all the saved images
-
-//View model load all images
-
 import SwiftUI
 
 struct GalleryView: View {
+    
+    @StateObject var viewModel: GalleryViewModel
+    
     // 1. Define sample data
     let items = Array(1...21)
     
     // 2. Configure 3 flexible columns
     let columns = [
-        GridItem(.flexible()),
         GridItem(.flexible()),
         GridItem(.flexible())
     ]
@@ -25,13 +24,14 @@ struct GalleryView: View {
     var body: some View {
         ScrollView {
             // 3. Implement the lazy vertical grid
+            Text("My Gallery \(viewModel.model.title)")
             LazyVGrid(columns: columns, spacing: 16) {
                 ForEach(items, id: \.self) { item in
                     //Text("Item \(item)")
-                    AsyncImage(url: URL(string: "https://hips.hearstapps.com/hmg-prod/images/2026-ferrari-f80-176-686e843d2569f.jpg?crop=0.636xw:0.536xh;0.165xw,0.325xh&resize=700:*"))
+                    AsyncImage(url: URL(string: viewModel.model.defaultImageString))
                         .frame(maxWidth: .infinity)
-                        .frame(height: 100)
-                        .frame(width: 100)
+                        .frame(height: 150)
+                        .frame(width: 150)
                         .background(Color.blue)
                         .foregroundColor(.white)
                         .cornerRadius(8)
@@ -43,5 +43,5 @@ struct GalleryView: View {
 }
 
 #Preview {
-    GalleryView()
+    GalleryView(viewModel: GalleryViewModel(model: SavedGalleryModel(title: "", isCompleted: true, defaultImageString: "https://hips.hearstapps.com/hmg-prod/images/2026-ferrari-f80-176-686e843d2569f.jpg?crop=0.636xw:0.536xh;0.165xw,0.325xh&resize=700:*")))
 }
