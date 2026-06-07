@@ -27,16 +27,23 @@ struct GalleryView: View {
             LazyVGrid(columns: columns, spacing: 16) {
                 ForEach(items, id: \.self) { item in
                     //Text("Item \(item)")
-                    AsyncImage(url: URL(string: viewModel.model.defaultImageString))
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 150)
-                        .frame(width: 150)
-                        .background(Color.blue)
-                        .foregroundColor(.white)
-                        .cornerRadius(8)
+                    if let uiImage = viewModel.savedUIImage {
+                        Image(uiImage: uiImage)
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 150)
+                            .frame(width: 150)
+                            //.resizable() //MARK: To do fix resizable()
+                            .scaledToFit()
+                            .background(Color.blue)
+                            .cornerRadius(8)
+                    }
+
                 }
             }
             .padding()
+        }
+        .task {
+            viewModel.loadSavedImages()
         }
     }
 }

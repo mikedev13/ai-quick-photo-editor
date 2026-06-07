@@ -7,10 +7,12 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var viewModel = ContentViewModel(model: HomeDataModel(appName: ""))
+    
     var body: some View {
         TabView {
             // Tab 1
-            Text("AI Quick Photo")
+            Text(viewModel.model.appName)
                 .tabItem {
                     Label("Home", systemImage: "house.fill")  //new view
                 }
@@ -26,9 +28,12 @@ struct ContentView: View {
                         .symbolEffect(.pulse.byLayer, options: .repeating)
                 }
         }
+        .task {
+            viewModel.setupHomeScreen()
+        }
     }
 }
 
 #Preview {
-    ContentView()
+    ContentView(viewModel: ContentViewModel(model: HomeDataModel(appName: "AI Photo App (PREVIEW)")))
 }

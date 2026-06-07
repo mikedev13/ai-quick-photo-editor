@@ -1,0 +1,23 @@
+{
+  "appName": "AI Photo App",
+  "summary": "An iOS app that lets users select, capture, or browse images and enhance them using AI-powered photo tools.",
+  "coreFeatures": [
+    "Select photo from gallery",
+    "Take photo with camera",
+    "Search or load web images",
+    "AI image enhancement",
+    "Background removal",
+    "Style filters",
+    "Save or share edited images"
+  ],
+  "targetPlatform": "iPhone",
+  "primaryUserFlow": [
+    "Open app",
+    "Choose image source",
+    "Import photo",
+    "Apply AI edits",
+    "Preview result",
+    "Save or share"
+  ],
+  "designStyle": "Clean, modern, iOS-style interface with simple actions and blue accent buttons"
+}
