@@ -14,8 +14,9 @@ class ContentViewModel {
     
     var model: HomeDataModel
     
-    init(model: HomeDataModel) {
-        self.model = model
+    // Convenience init that builds the model internally
+    init(appName: String = "") {
+        self.model = HomeDataModel(appName: appName)
     }
     
     func setupHomeScreen() {

@@ -7,7 +7,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var viewModel = ContentViewModel(model: HomeDataModel(appName: ""))
+    @State var viewModel = ContentViewModel()
     
     var body: some View {
         TabView {
@@ -35,5 +35,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView(viewModel: ContentViewModel(model: HomeDataModel(appName: "AI Photo App (PREVIEW)")))
+    ContentView(viewModel: ContentViewModel())
 }
